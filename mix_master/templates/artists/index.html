@@ -2,6 +2,9 @@
 
 {% block content %}
   <h1>All Artists</h1>
+
+  <a href="{% url 'artist_new'%}">New Artist</a><br/>
+
   {% for artist in artists %}
     <ul>
       <li>{{ artist.name }}</li>
