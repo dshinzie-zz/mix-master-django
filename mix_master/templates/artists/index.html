@@ -1,0 +1,13 @@
+{% extends '../base.html' %}
+
+{% block content %}
+  {% for artist in artists %}
+      <div class="artist">
+          <div class="date">
+              <p>published: {{ artist.published_date }}</p>
+          </div>
+          
+          <p>{{ artist.text|linebreaksbr }}</p>
+      </div>
+  {% endfor %}
+{% endblock content%}
