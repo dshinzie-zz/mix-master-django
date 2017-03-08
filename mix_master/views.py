@@ -5,9 +5,13 @@ from .forms import ArtistForm
 
 from django.shortcuts import render
 
-def artist_index(request):
+def artist_list(request):
     artists = Artist.objects.all()
-    return render(request, 'artists/index.html', {'artists': artists})
+    return render(request, 'artists/list.html', {'artists': artists})
+
+def artist_detail(request, pk):
+    artist = get_object_or_404(Artist, pk=pk)
+    return render(request, 'artists/detail.html', {'artist': artist})
 
 def artist_new(request):
     if request.method == 'POST':
