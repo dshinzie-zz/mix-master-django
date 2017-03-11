@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Artist
-from .forms import ArtistForm
+from .models import Artist, Song
+from .forms import ArtistForm, SongForm
 
 from django.shortcuts import render
 
@@ -24,3 +24,15 @@ def artist_new(request):
     else:
         form = ArtistForm()
     return render(request, 'artists/new.html', {'form': form})
+
+def artist_song_new(request, pk):
+    if(request.method) == 'POST':
+        form = SongForm(request.POST)
+        if form.is_valid():
+            song = form.save(commit=False)
+            song.published_date = timezone.now()
+            song.save()
+            return redirect('artist_index')
+    else:
+        form = SongForm()
+    return render(request, 'artists/songs/new.html')

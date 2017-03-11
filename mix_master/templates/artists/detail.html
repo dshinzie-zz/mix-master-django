@@ -2,5 +2,6 @@
 
 {% block content %}
   <h1>{{ artist.name }}</h1>
+  <a href="{% url 'artist_song_new' pk=artist.pk %}">New Song</a>
 
 {% endblock content%}
