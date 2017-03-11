@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ song.title }}</h1>
+  <a href="{% url 'artist_detail' pk=song.artist.pk %}">Back to Artist</a></br>
+  <a href="{% url 'song_list' %}">Back to Songs</a>
+{% endblock content%}
