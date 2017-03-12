@@ -7,23 +7,14 @@ class Artist(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
-    def __str__(self):
-        return self.name
-
 class Song(models.Model):
     title = models.CharField(max_length=200)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
-    def __str__(self):
-        return self.title
-
 class Playlist(models.Model):
     name = models.CharField(max_length=200)
     songs = models.ManyToManyField(Song)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
-
-    def __str__(self):
-        return self.name

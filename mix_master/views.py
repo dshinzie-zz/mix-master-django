@@ -52,7 +52,8 @@ def playlist_list(request):
     return render(request, 'playlists/list.html', {'playlists': playlists})
 
 def playlist_detail(request, pk):
-    pass
+    playlist = get_object_or_404(Playlist, pk=pk)
+    return render(request, 'playlists/detail.html', {'playlist': playlist})
 
 def playlist_new(request):
     songs = Song.objects.all()

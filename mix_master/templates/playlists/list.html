@@ -3,11 +3,11 @@
 {% block content %}
   <h1>All Playlists</h1>
 
-  <a href="{% url 'playlist_new'%}">New Playlist</a><br/>
+  <a href="{% url 'playlist_new' %}">New Playlist</a><br/>
 
   {% for playlist in playlists %}
     <ul>
-      <li><a href="">{{ playlist.name }}</a></li>
+      <li><a href="{% url 'playlist_detail' pk=playlist.pk %}">{{ playlist.name }}</a></li>
     </ul>
 
   {% endfor %}
