@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Artist, Song
-from .forms import ArtistForm, SongForm
+from .models import Artist, Song, Playlist
+from .forms import ArtistForm, SongForm, PlaylistForm
 
 from django.shortcuts import render
 
@@ -46,3 +46,27 @@ def song_list(request):
 def song_detail(request, pk):
     song = get_object_or_404(Song, pk=pk)
     return render(request, 'songs/detail.html', {'song': song})
+
+def playlist_list(request):
+    playlists = Playlist.objects.all()
+    return render(request, 'playlists/list.html', {'playlists': playlists})
+
+def playlist_detail(request, pk):
+    pass
+
+def playlist_new(request):
+    songs = Song.objects.all()
+    if(request.method) == 'POST':
+        form = PlaylistForm(request.POST)
+        if form.is_valid():
+            input_songs = request.POST.getlist('songs')
+            playlist = form.save(commit=False)
+            playlist.published_date = timezone.now()
+            playlist.save()
+            for song in input_songs:
+                playlist.songs.add(song)
+            playlist.save()
+            return redirect('playlist_list')
+    else:
+        form = PlaylistForm()
+    return render(request, 'playlists/new.html', {'form': form, 'songs': songs})

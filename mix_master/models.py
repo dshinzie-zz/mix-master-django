@@ -18,3 +18,12 @@ class Song(models.Model):
 
     def __str__(self):
         return self.title
+
+class Playlist(models.Model):
+    name = models.CharField(max_length=200)
+    songs = models.ManyToManyField(Song)
+    created_date = models.DateTimeField(default=timezone.now)
+    published_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name

@@ -16,4 +16,9 @@ urlpatterns = [
     #songs
     url(r'^songs/$', views.song_list, name='song_list'),
     url(r'^songs/(?P<pk>\d+)/$', views.song_detail, name='song_detail'),
+
+    #playlists
+    url(r'^playlists/$', views.playlist_list, name='playlist_list'),
+    url(r'^playlists/new/$', views.playlist_new, name='playlist_new'),
+    url(r'^playlists/(?P<pk>\d+)/$', views.playlist_detail, name='playlist_detail'),
 ]
